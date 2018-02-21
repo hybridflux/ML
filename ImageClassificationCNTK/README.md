@@ -10,20 +10,22 @@ Hint: If the jupyter notebook does not show the pictures, install the widget ext
 jupyter nbextension enable --py widgetsnbextension
 ```
 
-
+## Why do I need an additional script 7_evalModel.py?
 When you go through the steps in the workbench, you will see that the the script _0_downloadData.py_ downloads the pictures in a directory, seperated in folders depending on which labels/classifiers you will use later. The script _1_prepareData.py_ takes the folder names as labels and splits these images randomly according to the ratio `ratioTrainTest` you chose in _PARAMETERS.py_, and stores dictionaries as pickle files for the respective random training- and test-sets. Now, if you want to evaluate with another image test set, i.e. as is done in _5_evaluate.py_ you have to go through the steps for these images as well. 
 
 However, it is not only _1_prepareData.py_ and  _5_evaluate.py_ you would have to consider editing, as the steps in  _3_runDNN.py_ needs the dictionary of the test set for model training and for the respective dnn output. I decided not to edit these files but instead create an additional step _7_evalModel.py_ and extend the file _PATAMETERS.py_ with parameters for the evaluation step. 
 
+## What to add to _PARAMETERS.py_
 These are the additional parameters for the evaluation:
 ```
-\# Directories
+# Directories
 imgEvalDir      = pathJoin(rootDir,    "gear_images_eval/")
 
-\# Files
+# Files
 imgDictEvalPath         = pathJoin(procDir, "imgDictEval.pickle")
 ```
 
+## What does 7_evalModel.py do?
 **Be sure to have the same directory names for your evaluation images**, or else the evaluation will not work as these are used as labels. In _7_evalModel.py_, the filenames are read into the dictionary with the directory names as keys:
 ```
 for subdir in subdirs:
@@ -50,6 +52,12 @@ for label in list(dnnOutputEval.keys()):
 
 If you do not do this, you will get key errors for the output dictionary as it does not contain the evaluation image set. 
 
+## Additional comments
 I also noticed that the GUI of Machine Learning Workbench does not show the correct accuracies for the labels, but shows them correctly in the logs for the run (i have not debugged this yet). Be sure to check the driver_log to be sure.  
+
+![alt text](gui_acc.JPG "Shot of run output and driver_log")
+
+## Thanks!
+Many thanks to the Workbench team and the team that created the template for Image Classification. You made my life easier during the OpenHack and I am happy to contribute my findings to the community as well.
 
 
