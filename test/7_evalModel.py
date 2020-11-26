@@ -8,7 +8,6 @@ from helpers import *
 from helpers_cntk import *
 from PARAMETERS import *
 
-#Creating an additional comment
 ####################################
 # Create Pickle File
 ####################################
