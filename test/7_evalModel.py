@@ -8,9 +8,7 @@ from helpers import *
 from helpers_cntk import *
 from PARAMETERS import *
 
-####################################
-# Create Pickle File
-####################################
+
 random.seed(0)
 makeDirectory(rootDir)
 makeDirectory(procDir)

@@ -4,9 +4,7 @@ sys.path.append("libraries")
 sys.path.append("../libraries")
 from helpers import getDirectoriesInDirectory, pathJoin
 
-###################
-# Parameters
-###################
+
 classifier = 'dnn' #options: 'svm': to keep pre-trained DNN fixed and use a SVM as classifier (this does not require a DNN, all other options do)
                    #         'dnn': to refine the DNN and use it as the classifier
                    #         'svmDnnRefined': this first refines the DNN (like option 'dnn') but then trains a SVM classifier on its output(like option 'svm')
